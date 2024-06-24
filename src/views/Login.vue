@@ -18,12 +18,15 @@ export default {
     };
   },
   methods: {
-    login() {
+    async login() {
       const credentials = {
         username: this.username,
         password: this.password,
       };
-      this.$store.dispatch('login', credentials);
+      await this.$store.dispatch('auth/login', credentials);
+      if (this.$store.getters.isAuthenticated) {
+        this.$router.push('/');
+      }
     },
   },
 };

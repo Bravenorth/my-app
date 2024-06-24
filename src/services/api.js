@@ -8,13 +8,13 @@ const apiClient = axios.create({
 });
 
 export default {
-  getItems() {
-    return apiClient.get('/items');
-  },
   login(credentials) {
-    return apiClient.post('/auth/login', credentials); // Route correcte pour la connexion
+    return apiClient.post('/auth/login', credentials);
   },
   register(credentials) {
-    return apiClient.post('/auth/signup', credentials); // Route correcte pour l'inscription
+    return apiClient.post('/auth/signup', credentials);
+  },
+  logout() {
+    return apiClient.post('/auth/logout'); // Si cette route est disponible dans votre backend
   },
 };

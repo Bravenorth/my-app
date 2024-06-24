@@ -1,44 +1,21 @@
 import { createStore } from 'vuex';
-import api from '@/services/api';
+import auth from './modules/auth'; // Importer le module auth
 
 export default createStore({
-  state: {
-    user: null,
-    isAuthenticated: false,
-  },
-  mutations: {
-    setUser(state, user) {
-      state.user = user;
-      state.isAuthenticated = !!user;
-    },
+  modules: {
+    auth // Ajouter le module auth
   },
   actions: {
-    async login({ commit }, credentials) {
-      try {
-        const response = await api.login(credentials);
-        commit('setUser', response.data.user);
-      } catch (error) {
-        console.error('Failed to login:', error);
+    initializeStore({ commit }) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        commit('auth/setToken', token);
+        // Vous pouvez également ajouter une action pour obtenir l'utilisateur avec le token
       }
-    },
-    async register({ commit }, userData) {
-      try {
-        const response = await api.register(userData);
-        commit('setUser', response.data.user);
-      } catch (error) {
-        console.error('Failed to register:', error);
-      }
-    },
-    async logout({ commit }) {
-      try {
-        await apiClient.post('/auth/logout'); // Ajoutez cette route dans votre backend si nécessaire
-        commit('setUser', null);
-      } catch (error) {
-        console.error('Failed to logout:', error);
-      }
-    },
+    }
   },
   getters: {
-    isAuthenticated: (state) => state.isAuthenticated,
+    isAuthenticated: (state) => state.auth.isAuthenticated,
+    getToken: (state) => state.auth.token,
   },
 });
