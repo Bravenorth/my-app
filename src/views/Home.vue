@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1>Welcome to My App</h1>
-    <p>This is the home page.</p>
+    <h1>Welcome to Alpha Salvage</h1>
+    <p>This tool is dedicated to help you to manage your salvage sessions in an organized and efficient way. Make sure to send feedback to us!</p>
   </div>
 </template>
 

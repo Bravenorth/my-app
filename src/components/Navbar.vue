@@ -1,20 +1,27 @@
 <template>
   <nav class="navbar">
-    <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/about">About</router-link></li>
-      <li v-if="!isAuthenticated"><router-link to="/login">Login</router-link></li>
-      <li v-if="!isAuthenticated"><router-link to="/register">Register</router-link></li>
-      <li v-if="isAuthenticated" @click="logout">Logout</li>
-    </ul>
+    <div class="nav-left">
+      <router-link to="/">{{ siteName }}</router-link>
+    </div>
+    <div class="nav-right">
+      <router-link v-if="!isAuthenticated" to="/login">Login</router-link>
+      <router-link v-if="!isAuthenticated" to="/register">Register</router-link>
+      <a v-if="isAuthenticated" @click="logout">Logout</a>
+    </div>
   </nav>
 </template>
 
 <script>
+import { siteName } from '@/globalConfig';
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'NavBar',
+  data() {
+    return {
+      siteName,
+    };
+  },
   computed: {
     ...mapGetters(['isAuthenticated']),
   },
@@ -28,32 +35,31 @@ export default {
 
 <style scoped>
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--primary-color);
   padding: var(--padding);
   border-bottom: 1px solid var(--secondary-color);
   box-shadow: var(--box-shadow);
 }
 
-.navbar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.nav-left, .nav-right {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
 }
 
-.navbar li {
-  margin-right: var(--margin);
-}
-
-.navbar a {
+.nav-left a, .nav-right a {
   color: var(--text-color);
   padding: 0.75rem 1.5rem;
   border-radius: var(--border-radius);
   transition: background-color var(--transition-speed), color var(--transition-speed);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: var(--margin);
 }
 
-.navbar a:hover {
+.nav-left a:hover, .nav-right a:hover {
   background-color: var(--secondary-color);
   color: var(--accent-color);
 }

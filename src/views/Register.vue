@@ -11,12 +11,15 @@
 </template>
 
 <script>
+import { siteName } from '@/globalConfig';
+
 export default {
   data() {
     return {
       username: '',
       email: '',
       password: '',
+      siteName,
     };
   },
   methods: {
@@ -31,11 +34,17 @@ export default {
 
 <style scoped>
 .container {
-  background-color: var(--primary-color);
   padding: var(--padding);
+  margin: var(--margin);
+  max-width: 800px;
+  background-color: var(--primary-color);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  border: 1px solid var(--accent-color);
   width: 100%;
-  max-width: 500px;
+}
+
+h2 {
+  color: var(--accent-color);
 }
 </style>
