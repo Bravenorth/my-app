@@ -1,0 +1,78 @@
+/* styles.css */
+
+/* Général */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    color: #ffffff;
+  }
+  
+  .container {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    margin: 100px auto 0; /* Ajoutez du remplissage en haut */
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #6200ee;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #3700b3;
+  }
+  
+  a {
+    display: block;
+    margin-top: 20px;
+    color: #bb86fc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: #cf6679;
+    margin-top: 10px;
+  }
+  
+  /* Spécifique */
+  .home-link {
+    margin-top: 20px;
+  }
+  
+  .form-link {
+    margin-top: 10px;
+  }
+  
