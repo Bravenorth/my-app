@@ -19,9 +19,11 @@ export default {
   },
   methods: {
     login() {
-      const user = { username: this.username };
-      this.$store.dispatch('login', user);
-      this.$router.push('/');
+      const credentials = {
+        username: this.username,
+        password: this.password,
+      };
+      this.$store.dispatch('login', credentials);
     },
   },
 };
@@ -29,9 +31,8 @@ export default {
 
 <style scoped>
 .container {
-  background-color: var(--primary-color);
-  padding: var(--padding);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  padding: 1rem;
+  max-width: 400px;
+  margin: 0 auto;
 }
 </style>

@@ -31,7 +31,7 @@ export default createStore({
     },
     async logout({ commit }) {
       try {
-        await apiClient.post('/users/logout');
+        await apiClient.post('/auth/logout'); // Ajoutez cette route dans votre backend si nécessaire
         commit('setUser', null);
       } catch (error) {
         console.error('Failed to logout:', error);
