@@ -7,6 +7,6 @@ import './assets/styles.css'; // Import global CSS
 const app = createApp(App);
 
 app.use(router);
-app.use(store); // Utiliser Vuex store
+app.use(store); // Utilize Vuex store
 
 app.mount('#app');

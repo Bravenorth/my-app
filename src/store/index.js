@@ -35,18 +35,18 @@ export default createStore({
             'Authorization': `Bearer ${token}`
           }
         })
-          .then(response => response.json())
-          .then(data => {
-            if (data && data.user) {
-              commit('setUser', data.user);
-              commit('setToken', token);
-            } else {
-              commit('clearAuthData');
-            }
-          })
-          .catch(() => {
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.user) {
+            commit('setUser', data.user);
+            commit('setToken', token);
+          } else {
             commit('clearAuthData');
-          });
+          }
+        })
+        .catch(() => {
+          commit('clearAuthData');
+        });
       }
     }
   },

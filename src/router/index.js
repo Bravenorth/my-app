@@ -10,7 +10,7 @@ const routes = [
   { path: '/login', name: 'Login', component: LoginView },
   { path: '/signup', name: 'Signup', component: SignupView },
   { path: '/forgot-password', name: 'ForgotPassword', component: ForgotPassword },
-  { path: '/reset-password', name: 'ResetPassword', component: ResetPassword, props: (route) => ({ token: route.query.token }) }
+  { path: '/reset-password', name: 'ResetPassword', component: ResetPassword, props: route => ({ token: route.query.token }) }
 ];
 
 const router = createRouter({
