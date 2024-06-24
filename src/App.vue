@@ -1,26 +1,51 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view />
+    <NavBar />
+    <main>
+      <router-view />
+    </main>
+    <Footer />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import Navbar from './components/Navbar.vue';
+import NavBar from './components/NavBar.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    NavBar,
+    Footer,
   },
-  methods: {
-    ...mapActions(['fetchUser'])
-  },
-  created() {
-    this.fetchUser();
-  }
 };
 </script>
 
-<style src="./assets/styles.css"></style>
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--padding);
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+}
+</style>

@@ -1,97 +1,60 @@
 <template>
   <nav class="navbar">
-    <div class="navbar-container">
-      <router-link class="navbar-brand" to="/">MyApp</router-link>
-      <div class="navbar-links">
-        <router-link class="navbar-link" to="/">Home</router-link>
-        <template v-if="!isAuthenticated">
-          <router-link class="navbar-link" to="/login">Login</router-link>
-          <router-link class="navbar-link" to="/signup">Signup</router-link>
-        </template>
-        <template v-else>
-          <span class="navbar-user">Bienvenue, {{ user.username }}</span>
-          <button @click="logout">Déconnexion</button>
-        </template>
-      </div>
-    </div>
+    <ul>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/about">About</router-link></li>
+      <li v-if="!isAuthenticated"><router-link to="/login">Login</router-link></li>
+      <li v-if="!isAuthenticated"><router-link to="/register">Register</router-link></li>
+      <li v-if="isAuthenticated" @click="logout">Logout</li>
+    </ul>
   </nav>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
-  name: 'Navbar',
+  name: 'NavBar',
   computed: {
-    ...mapGetters(['isAuthenticated', 'user'])
+    ...mapGetters(['isAuthenticated']),
   },
   methods: {
-    ...mapActions(['logout'])
-  },
-  created() {
-    this.$store.dispatch('fetchUser');
+    logout() {
+      this.$store.dispatch('logout');
+    }
   }
 };
 </script>
 
 <style scoped>
 .navbar {
-  background-color: #1e1e1e;
-  padding: 10px 20px;
+  background-color: var(--primary-color);
+  padding: var(--padding);
+  border-bottom: 1px solid var(--secondary-color);
+  box-shadow: var(--box-shadow);
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+  justify-content: space-around;
 }
 
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
+.navbar li {
+  margin-right: var(--margin);
 }
 
-.navbar-brand {
-  color: #bb86fc;
-  text-decoration: none;
-  font-size: 1.5em;
-  font-weight: bold;
+.navbar a {
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
-.navbar-links {
-  display: flex;
-  gap: 20px;
-}
-
-.navbar-link {
-  color: #e0e0e0;
-  text-decoration: none;
-  font-size: 1em;
-}
-
-.navbar-link button {
-  background: none;
-  border: none;
-  color: #e0e0e0;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-.navbar-link button:hover {
-  text-decoration: underline;
-}
-
-.navbar-link:hover {
-  text-decoration: underline;
-}
-
-.navbar-user {
-  color: #e0e0e0;
-  font-size: 1em;
+.navbar a:hover {
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
 }
 </style>
